@@ -3,13 +3,91 @@ const { get } = require("snekfetch");
 const { Client, Util } = require('discord.js');
 const ce = require("embed-creator");
 const client = new Discord.Client();
+var Themeparks = require("themeparks");
 client.login(process.env.token);
 const prefix = '!';
+const PREFIX = "!";
 client.on('ready', () => {
 	console.log('Bot en ligne!');
-	client.user.setActivity('🐱 Myaw')});
+	client.user.setActivity('🐱 !aide')});
 client.on('warn', console.warn);
 client.on('error', console.error);
+
+// Dialogues
+
+client.on('message', message => {
+    if(message.content === 'Elle est comment Alycia?')
+		message.channel.send("C'est la plus mignonne de l'univers, elle est.. myaaaaaw :3");
+});
+client.on('message', message => {
+    if(message.content === 'Il est comment Paolo?')
+		message.channel.send("Pffff.. Il est pas bo :x");
+});
+client.on('message', message => {
+    if(message.content === 'Bonzour')
+		message.channel.send("Bonzour :3");
+});
+client.on('message', message => {
+    if(message.content === 'Bonjour')
+		message.channel.send("Bonzour :3");
+});
+client.on('message', message => {
+    if(message.content === 'Salut')
+		message.channel.send("Bonzour :3");
+});
+client.on('message', message => {
+	if(message.content === 'Coucou')
+	message.channel.send("Bonzour :3");
+});
+client.on('message', message => {
+	if(message.content === 'coucou')
+	message.channel.send("Bonzour :3");
+});
+
+//Infos
+
+client.on('guildMemberAdd', member => {
+	var channel = client.channels.get('529742556691431454');
+	if (!channel) return;
+	channel.send(ce(
+	  "#00FF00", {"name": member.guild.name, "icon_url": member.guild.iconURL}, "", "",
+	  [{"name": "Passez un agréable moment en notre compagnie!", "value": member.user.tag }],
+	  {"text": "", "icon_url": member.guild.iconURL}, 
+	  {"thumbnail": member.user.displayAvatarURL}, true
+	));
+  });
+  client.on('guildMemberRemove', member => {
+	var channel = client.channels.get('529742556691431454');
+	if (!channel) return;
+	channel.send(ce(
+	  "#FF0000", {"name": member.guild.name, "icon_url": member.guild.iconURL}, "", "",
+	  [{"name": "A bientôt!", "value": member.user.tag }],
+	  {"text": "", "icon_url": member.guild.iconURL}, 
+	  {"thumbnail": member.user.displayAvatarURL}, true
+	));
+  });
+  client.on('guildBanAdd', (guild, user) => {
+	var channel = client.channels.get('529742556691431454');
+	if (!channel) return;
+	channel.send(ce(
+	  "#010101", {"name": guild.name, "icon_url": guild.iconURL}, "", "",
+	  [{"name": user.tag, "value": "est désormais banni." }],
+	  {"text": "", "icon_url": guild.iconURL}, 
+	  {"thumbnail": user.displayAvatarURL}, true
+	));
+  });
+  client.on('guildBanRemove', (guild, user) => {
+	var channel = client.channels.get('529742556691431454');
+	if (!channel) return;
+	channel.send(ce(
+	  "#EE82EE", {"name": guild.name, "icon_url": guild.iconURL}, "", "",
+	  [{"name": user.tag, "value": "est autorisé à nous rejoindre de nouveau."}],
+	  {"text": "", "icon_url": guild.iconURL}, 
+	  {"thumbnail": user.displayAvatarURL}, true
+	));
+  });
+
+//Utilitaires
 
 client.on('message', msg => {
 	if(msg.content.startsWith(prefix + 'myaw')) {
@@ -23,12 +101,95 @@ client.on('message', msg => {
 			return msg.channel.send(error.stack);
 		}
 	}});
+client.on('message', message => {
+  const args = message.content.slice(prefix.length).trim().split(';');
+  const command = args.shift().toLowerCase();
+  if (command === "sondage") {
+    if(!message.member.hasPermission("KICK_MEMBERS")) return;
+    let question = args[0];
+    let choix1 = args[1];
+    let choix2 = args[2];
+    let choix3 = args[3];
+    if (args.length === 0)
+      return message.reply('**Mauvais format:** `!sondage;<Question>;<Choix1>;<Choix2>;<Choix3>`')
+  message.channel.send("~~-----------~~" + '\n' + '\n' + ":question:" + `**__${question}__**` + '\n'  + '\n' + "" + ":one:" + ` **${choix1}**` +  '\n' + ":two:" + ` **${choix2}**` +  '\n' + ":three:" + ` **${choix3}**` + '\n' + '\n' + "*(Créer par: " + message.author.username + ")*")
+  .then(function (message) {
+    message.react('1⃣').then(() => message.react('2⃣')).then(() => message.react('3⃣'));
+	})}});
+client.on('message', message => {
+  if (message.content === prefix + 'aide') {
+    message.channel.send(ce(
+      "#010101", {"name": `Aide`, "icon_url": ""}, "", "",
+      [{"name": "!disneyland", "value": "Afficher les temps d'attentes du parc Disneyland Paris."},
+      {"name": "!studios", "value": "Afficher les temps d'attentes du parc Walt Disney Studios."},
+	  {"name": "!myaw", "value": "Afficher une image de chat aléatoire."},
+	  {"name": "!purge <2-100>", "value": "Supprimer des messages dans un salon textuel."},
+	  {"name": "!sondage;<Question>;<Choix1>;<Choix2>;<Choix3>", "value": "Lancer un sondage."}],
+      {"text": "", "icon_url": ""}, 
+      {"thumbnail": "", "image": ""}, true
+    ))
+  }
+});
+client.on('message', async message => {
+	if(message.author.bot) return;
+	if(message.content.indexOf(PREFIX) !== 0) return;
+	const args = message.content.slice(PREFIX.length).trim().split(/ +/g);
+	const command = args.shift().toLowerCase();
+	if(command === "purge") {
+	  if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
+	  const deleteCount = parseInt(args[0], 10);
+	  if(!deleteCount || deleteCount < 2 || deleteCount > 100)
+		return message.reply("Veuillez indiquer un nombre compris entre 2 et 100 pour le nombre de messages à supprimer.");
+	  const fetched = await message.channel.fetchMessages({limit: deleteCount});
+	  message.channel.bulkDelete(fetched)
+		.catch(error => message.reply(`Impossible de supprimer les messages en raison de: ${error}`));
+	};
+  });
+
+// Liste de tout les parcs supportés par la library
+
+for (var park in Themeparks.Parks)
+
+// Accès à un parc
+
+var disneyMagicKingdom = new Themeparks.Parks.DisneylandParisMagicKingdom();
+
+// Informations sur le parc
 
 client.on('message', message => {
-    if(message.content === 'Elle est comment Alycia?')
-		message.channel.send("C'est la plus mignonne de l'univers, elle est.. myaaaaaw :3");
-});
+  if (message.content === prefix + 'disneyland') {
+    message.channel.send(ce(
+      "#010101", {"name": "", "icon_url": ""}, "", "",
+      [{"name": `Disneyland Paris`, "value": "Temps d'attentes"}],
+      {"text": "", "icon_url": ""}, 
+      {"thumbnail": "", "image": ""}, false
+    ));
+    disneyMagicKingdom.GetWaitTimes().then(function(rides) {
+    for(var i=0, ride; ride=rides[i++];) {
+    message.channel.send(ce(
+    "#010101", {"name": "", "icon_url": ""}, "", "",
+    [{"name": ride.name, "value": ride.waitTime + " minutes."}],
+    {"text": "", "icon_url": ""}, 
+    {"thumbnail": "", "image": ""}, true
+    ))}});
+}});
+
+var disneyWaltDisneyStudios = new Themeparks.Parks.DisneylandParisWaltDisneyStudios();
+
 client.on('message', message => {
-    if(message.content === 'Il est comment Paolo?')
-		message.channel.send("Pffff.. Il est pas bo :x");
-});
+  if (message.content === prefix + 'studios') {
+    message.channel.send(ce(
+      "#010101", {"name": "", "icon_url": ""}, "", "",
+      [{"name": `Walt Disney Studios`, "value": "Temps d'attentes"}],
+      {"text": "", "icon_url": ""}, 
+      {"thumbnail": "", "image": ""}, false
+    ));
+    disneyWaltDisneyStudios.GetWaitTimes().then(function(rides) {
+    for(var i=0, ride; ride=rides[i++];) {
+    message.channel.send(ce(
+    "#010101", {"name": "", "icon_url": ""}, "", "",
+    [{"name": ride.name, "value": ride.waitTime + " minutes."}],
+    {"text": "", "icon_url": ""}, 
+    {"thumbnail": "", "image": ""}, true
+    ))}});
+}});
