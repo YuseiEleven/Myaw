@@ -9,7 +9,6 @@ const prefix = '!';
 const PREFIX = "!";
 client.on('ready', () => {
 	console.log('Bot en ligne!')});
-//	client.user.setActivity('🐱 !aide')});
 client.on('warn', console.warn);
 client.on('error', console.error);
 const activities_list = [
@@ -21,11 +20,25 @@ const activities_list = [
 	"😽 Miuuuuu"
 	];
 
+const activities_list2 = [
+	"❤️", 
+	"🧡",
+	"💛", 
+	"💚",
+	"💙",
+	"💜",
+	"🖤",
+	"💖",
+	"💗",
+	"💞",
+	""
+	];
+
 client.on('ready', () => {
 	setInterval(() => {
-			const index = Math.floor(Math.random() * (activities_list.length - 1) + 1);
-			client.user.setActivity(activities_list[index]);
-	}, 10000); //10 seconds
+			const index = Math.floor(Math.random() * (activities_list2.length - 1) + 1);
+			client.user.setActivity(activities_list2[index]);
+	}, 1000); //10 seconds=10000
 });
 
 
@@ -53,10 +66,10 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   if(oldUserChannel === undefined && newUserChannel !== undefined) {
 
-		var channel = client.channels.get('530820542060822549');
+		var channel = client.channels.get('530842390630498314');
 				var embed = new Discord.RichEmbed()
 				.setAuthor(newMember.user.username, newMember.user.avatarURL)
-				.setTitle(newUserChannel.name)
+				.setTitle('🔊' + newUserChannel.name)
 				.setDescription('Viens de rejoindre un salon Vocal')
 				.setTimestamp(new Date())
 				.setColor('#C735D4');
@@ -64,10 +77,10 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   } else if(newUserChannel === undefined){
 
-		var channel = client.channels.get('530820542060822549');
+		var channel = client.channels.get('530842390630498314');
 				var embed = new Discord.RichEmbed()
 				.setAuthor(oldMember.user.username, oldMember.user.avatarURL)
-				.setTitle(oldUserChannel.name)
+				.setTitle('🔊' + oldUserChannel.name)
 				.setDescription('Viens de quitter un salon Vocal')
 				.setTimestamp(new Date())
 				.setColor('#C735D4');
