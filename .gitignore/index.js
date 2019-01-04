@@ -13,35 +13,69 @@ client.on('ready', () => {
 client.on('warn', console.warn);
 client.on('error', console.error);
 
+// Logs
+
+client.on('message', (message)=>{
+	var channel = client.channels.get('530820542060822549');
+	if(message.author.bot) return;
+	if (message.channel.type.toLowerCase() == 'dm' || message.channel.type.toLowerCase() == 'text') {
+			var embed = new Discord.RichEmbed()
+			.setAuthor(message.author.username, message.author.avatarURL)
+			.setTitle('#' + message.channel.name)
+			.setDescription(message.content)
+			.setTimestamp(new Date())
+			.setColor('#C735D4');
+			channel.send(embed);
+	}
+});
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+  let newUserChannel = newMember.voiceChannel
+  let oldUserChannel = oldMember.voiceChannel
+
+
+  if(oldUserChannel === undefined && newUserChannel !== undefined) {
+
+		var channel = client.channels.get('530820542060822549');
+				var embed = new Discord.RichEmbed()
+				.setAuthor(newMember.user.username, newMember.user.avatarURL)
+				.setTitle(newUserChannel.name)
+				.setDescription('Viens de rejoindre un salon Vocal')
+				.setTimestamp(new Date())
+				.setColor('#C735D4');
+				channel.send(embed);
+
+  } else if(newUserChannel === undefined){
+
+		var channel = client.channels.get('530820542060822549');
+				var embed = new Discord.RichEmbed()
+				.setAuthor(oldMember.user.username, oldMember.user.avatarURL)
+				.setTitle(oldUserChannel.name)
+				.setDescription('Viens de quitter un salon Vocal')
+				.setTimestamp(new Date())
+				.setColor('#C735D4');
+				channel.send(embed);
+
+  }
+})
+
 // Dialogues
 
 client.on('message', message => {
-    if(message.content === 'Elle est comment Alycia?')
+  if(message.content === 'Elle est comment Alycia?')
 		message.channel.send("C'est la plus mignonne de l'univers, elle est.. myaaaaaw :3");
-});
-client.on('message', message => {
-    if(message.content === 'Il est comment Paolo?')
+  if(message.content === 'Il est comment Paolo?')
 		message.channel.send("Pffff.. Il est pas bo :x");
-});
-client.on('message', message => {
-    if(message.content === 'Bonzour')
+  if(message.content === 'Bonzour')
 		message.channel.send("Bonzour :3");
-});
-client.on('message', message => {
-    if(message.content === 'Bonjour')
+  if(message.content === 'Bonjour')
 		message.channel.send("Bonzour :3");
-});
-client.on('message', message => {
-    if(message.content === 'Salut')
+  if(message.content === 'Salut')
 		message.channel.send("Bonzour :3");
-});
-client.on('message', message => {
 	if(message.content === 'Coucou')
-	message.channel.send("Bonzour :3");
-});
-client.on('message', message => {
+		message.channel.send("Bonzour :3");
 	if(message.content === 'coucou')
-	message.channel.send("Bonzour :3");
+		message.channel.send("Bonzour :3");
 });
 
 //Infos
