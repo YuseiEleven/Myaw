@@ -35,9 +35,9 @@ const activities_list2 = [
 
 client.on('ready', () => {
 	setInterval(() => {
-			const index = Math.floor(Math.random() * (activities_list2.length - 1) + 1);
-			client.user.setActivity(activities_list2[index]);
-	}, 1000); //10 seconds=10000
+			const index = Math.floor(Math.random() * (activities_list.length - 1) + 1);
+			client.user.setActivity(activities_list[index]);
+	}, 5000); //10 seconds=10000
 });
 
 
