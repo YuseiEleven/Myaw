@@ -8,10 +8,27 @@ client.login(process.env.token);
 const prefix = '!';
 const PREFIX = "!";
 client.on('ready', () => {
-	console.log('Bot en ligne!');
-	client.user.setActivity('🐱 !aide')});
+	console.log('Bot en ligne!')});
+//	client.user.setActivity('🐱 !aide')});
 client.on('warn', console.warn);
 client.on('error', console.error);
+const activities_list = [
+	"😺 !aide", 
+	"🙀 Myaaaaw xc",
+	"😿", 
+	"🦄 Suis un chat licorne",
+	"🐾 Pattounes",
+	"😽 Miuuuuu"
+	];
+
+client.on('ready', () => {
+	setInterval(() => {
+			const index = Math.floor(Math.random() * (activities_list.length - 1) + 1);
+			client.user.setActivity(activities_list[index]);
+	}, 10000); //10 seconds
+});
+
+
 
 // Logs
 
