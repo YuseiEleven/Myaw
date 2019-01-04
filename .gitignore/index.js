@@ -17,6 +17,10 @@ const activities_list = [
 	"😿", 
 	"🦄 Suis un chat licorne",
 	"🐾 Pattounes",
+	"🐈 !aide",
+	"🐱 Meow",
+	"😼 Nyahhh",
+	"😹 Arrêtez les chatouilles",
 	"😽 Miuuuuu"
 	];
 
@@ -68,7 +72,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 		var channel = client.channels.get('530842390630498314');
 				var embed = new Discord.RichEmbed()
 				.setAuthor(newMember.user.username, newMember.user.avatarURL)
-				.setTitle('🔊' + newUserChannel.name)
+				.setTitle('🔊 ' + newUserChannel.name)
 				.setDescription('Viens de rejoindre un salon Vocal')
 				.setTimestamp(new Date())
 				.setColor('#C735D4');
@@ -79,7 +83,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 		var channel = client.channels.get('530842390630498314');
 				var embed = new Discord.RichEmbed()
 				.setAuthor(oldMember.user.username, oldMember.user.avatarURL)
-				.setTitle('🔊' + oldUserChannel.name)
+				.setTitle('🔊 ' + oldUserChannel.name)
 				.setDescription('Viens de quitter un salon Vocal')
 				.setTimestamp(new Date())
 				.setColor('#C735D4');
