@@ -57,7 +57,7 @@ client.on('message', (message)=>{
 			.setTitle('#' + message.channel.name)
 			.setDescription(message.content)
 			.setTimestamp(new Date())
-			.setColor('#C735D4');
+			.setColor('#FFFFFF');
 			channel.send(embed);
 	}
 });
@@ -75,7 +75,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 				.setTitle('🔊 ' + newUserChannel.name)
 				.setDescription('Viens de rejoindre un salon Vocal')
 				.setTimestamp(new Date())
-				.setColor('#C735D4');
+				.setColor('#00FF00');
 				channel.send(embed);
 
   } else if(newUserChannel === undefined){
@@ -86,7 +86,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 				.setTitle('🔊 ' + oldUserChannel.name)
 				.setDescription('Viens de quitter un salon Vocal')
 				.setTimestamp(new Date())
-				.setColor('#C735D4');
+				.setColor('#FF0000');
 				channel.send(embed);
 
   }
