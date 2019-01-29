@@ -114,8 +114,6 @@ client.on('message', message => {
 client.on("message", async message => {
 	if(message.author.bot) return;
 	if(message.content.indexOf(prefix) !== 0) return;
-	var channel = client.channels.get('529356612901535774');
-	if (!channel) return;
 	const args = message.content.slice(prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	if(command === "isay") {
@@ -125,7 +123,7 @@ client.on("message", async message => {
     // Then we delete the command message (sneaky, right?). The catch just ignores the error with a cute smiley thing.
     message.delete().catch(O_o=>{}); 
     // And we get the bot to say the thing: 
-    channel.send(sayMessage);
+    message.channel.send(sayMessage);
   }
 });
 
