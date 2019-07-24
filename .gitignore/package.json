@@ -16,6 +16,6 @@
     "opusscript": "0.0.6",
     "simple-youtube-api": "^5.0.2",
     "themeparks": "^4.7.10"
-    "ytdl-core": "^0.26.1"
+    "ytdl-core" : "^0.26.1"
   }
 }
