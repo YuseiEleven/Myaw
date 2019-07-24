@@ -214,8 +214,8 @@ client.on('message', message => {
   if (message.content === prefix + 'aide') {
     message.channel.send(ce(
       "#010101", {"name": `Aide`, "icon_url": ""}, "", "",
-      [{"name": "!disneyland", "value": "Afficher les temps d'attentes du parc Disneyland Paris."},
-      {"name": "!studios", "value": "Afficher les temps d'attentes du parc Walt Disney Studios."},
+      [{"name": "[HS] !disneyland", "value": "Afficher les temps d'attentes du parc Disneyland Paris."},
+      {"name": "[HS] !studios", "value": "Afficher les temps d'attentes du parc Walt Disney Studios."},
 	  {"name": "!myaw", "value": "Afficher une image de chat aléatoire."},
 	  {"name": "!purge <2-100>", "value": "Supprimer des messages dans un salon textuel."},
 	  {"name": "!sondage;<Question>;<Choix1>;<Choix2>;<Choix3>", "value": "Lancer un sondage."}],
@@ -242,53 +242,53 @@ client.on('message', async message => {
 
 // Liste de tout les parcs supportés par la library
 
-for (var park in Themeparks.Parks)
+//for (var park in Themeparks.Parks)
 
 // Accès à un parc
 
-var disneyMagicKingdom = new Themeparks.Parks.DisneylandParisMagicKingdom();
+//var disneyMagicKingdom = new Themeparks.Parks.DisneylandParisMagicKingdom();
 
 // Informations sur le parc
 
-client.on('message', message => {
-  if (message.content === prefix + 'disneyland') {
-  var channel = client.channels.get('603551988281638935');
-     channel.send(ce(
-      "#010101", {"name": "", "icon_url": ""}, "", "",
-      [{"name": `Disneyland Paris`, "value": "Temps d'attentes"}],
-      {"text": "", "icon_url": ""}, 
-      {"thumbnail": "", "image": ""}, false
-    ));
-    disneyMagicKingdom.GetWaitTimes().then(function(rides) {
-    for(var i=0, ride; ride=rides[i++];) {
-    channel.send(ce(
-    "#010101", {"name": "", "icon_url": ""}, "", "",
-    [{"name": ride.name, "value": ride.waitTime + " minutes."}],
-    {"text": "", "icon_url": ""}, 
-    {"thumbnail": "", "image": ""}, true
-    ))}});
-}});
+//client.on('message', message => {
+//  if (message.content === prefix + 'disneyland') {
+//  var channel = client.channels.get('603551988281638935');
+//     channel.send(ce(
+//      "#010101", {"name": "", "icon_url": ""}, "", "",
+//      [{"name": `Disneyland Paris`, "value": "Temps d'attentes"}],
+//      {"text": "", "icon_url": ""}, 
+//      {"thumbnail": "", "image": ""}, false
+//    ));
+//    disneyMagicKingdom.GetWaitTimes().then(function(rides) {
+//    for(var i=0, ride; ride=rides[i++];) {
+//    channel.send(ce(
+//    "#010101", {"name": "", "icon_url": ""}, "", "",
+//    [{"name": ride.name, "value": ride.waitTime + " minutes."}],
+//    {"text": "", "icon_url": ""}, 
+//    {"thumbnail": "", "image": ""}, true
+//    ))}});
+//}});
 
-var disneyWaltDisneyStudios = new Themeparks.Parks.DisneylandParisWaltDisneyStudios();
+//var disneyWaltDisneyStudios = new Themeparks.Parks.DisneylandParisWaltDisneyStudios();
 
-client.on('message', message => {
-  if (message.content === prefix + 'studios') {
-  var channel = client.channels.get('603551988281638935');
-    channel.send(ce(
-      "#010101", {"name": "", "icon_url": ""}, "", "",
-      [{"name": `Walt Disney Studios`, "value": "Temps d'attentes"}],
-      {"text": "", "icon_url": ""}, 
-      {"thumbnail": "", "image": ""}, false
-    ));
-    disneyWaltDisneyStudios.GetWaitTimes().then(function(rides) {
-    for(var i=0, ride; ride=rides[i++];) {
-    message.channel.send(ce(
-    "#010101", {"name": "", "icon_url": ""}, "", "",
-    [{"name": ride.name, "value": ride.waitTime + " minutes."}],
-    {"text": "", "icon_url": ""}, 
-    {"thumbnail": "", "image": ""}, true
-    ))}});
-}});
+//client.on('message', message => {
+//  if (message.content === prefix + 'studios') {
+//  var channel = client.channels.get('603551988281638935');
+//    channel.send(ce(
+//      "#010101", {"name": "", "icon_url": ""}, "", "",
+//      [{"name": `Walt Disney Studios`, "value": "Temps d'attentes"}],
+//      {"text": "", "icon_url": ""}, 
+//      {"thumbnail": "", "image": ""}, false
+//    ));
+//    disneyWaltDisneyStudios.GetWaitTimes().then(function(rides) {
+//    for(var i=0, ride; ride=rides[i++];) {
+//    message.channel.send(ce(
+//    "#010101", {"name": "", "icon_url": ""}, "", "",
+//    [{"name": ride.name, "value": ride.waitTime + " minutes."}],
+//    {"text": "", "icon_url": ""}, 
+//    {"thumbnail": "", "image": ""}, true
+//    ))}});
+//}});
 
 // Modération
 
