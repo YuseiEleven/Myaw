@@ -199,7 +199,7 @@ client.on('message', msg => {
 client.on('message', msg => {
 	if(msg.content.startsWith(prefix + 'ouaf')) {
 		try {
-			get('https://random.dog/').then(res => {
+			get('https://random.dog/woof.json').then(res => {
 				const embed = new Discord.RichEmbed()
 				.setImage(res.body.file)
 				var channel = client.channels.get('603588020758773780');
