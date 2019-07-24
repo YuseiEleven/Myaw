@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const { get } = require("snekfetch"); 
 const { Client, Util } = require('discord.js');
 const ce = require("embed-creator");
-const client = new Discord.Client();
+//const client = new Discord.Client();
 var Themeparks = require("themeparks");
 client.login(process.env.token);
 const prefix = '!';
