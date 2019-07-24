@@ -201,7 +201,7 @@ client.on('message', msg => {
 		try {
 			get('https://random.dog/woof.json').then(res => {
 				const embed = new Discord.RichEmbed()
-				.setImage(res.body.file)
+				.setImage(res.body.url)
 				var channel = client.channels.get('603588020758773780');
 				return channel.send({embed});
 			});
