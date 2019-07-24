@@ -4,10 +4,6 @@ const { Client, Util } = require('discord.js');
 const ce = require("embed-creator");
 //const client = new Discord.Client();
 var Themeparks = require("themeparks");
-client.login(process.env.token);
-const prefix = '!';
-const PREFIX = "!";
-
 var opus = require('opusscript')
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
@@ -15,6 +11,9 @@ const client = new Client({ disableEveryone: true });
 const GOOGLE_API_KEY = (process.env.APIKEY);
 const youtube = new YouTube(GOOGLE_API_KEY);
 const queue = new Map();
+client.login(process.env.token);
+const prefix = '!';
+const PREFIX = "!";
 
 client.on('ready', () => {
 	console.log('En ligne!')});
