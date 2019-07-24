@@ -195,6 +195,21 @@ client.on('message', msg => {
 			return msg.channel.send(error.stack);
 		}
 	}});
+
+client.on('message', msg => {
+	if(msg.content.startsWith(prefix + 'ouaf')) {
+		try {
+			get('https://random.dog/').then(res => {
+				const embed = new Discord.RichEmbed()
+				.setImage(res.body.file)
+				var channel = client.channels.get('603588020758773780');
+				return channel.send({embed});
+			});
+		} catch(err) {
+			return msg.channel.send(error.stack);
+		}
+	}});
+
 client.on('message', message => {
   const args = message.content.slice(prefix.length).trim().split(';');
   const command = args.shift().toLowerCase();
