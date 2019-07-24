@@ -435,13 +435,13 @@ Veuillez écrire une valeur allant de 1 à 10 pour sélectionner l'un des résul
     if (!msg.member.hasPermission("MUTE_MEMBERS")) return;
     if (!serverQueue) return channel.send("❌ Aucune musique suivante dans la file d'attente.");
 		serverQueue.connection.dispatcher.end('Skip command has been used!');
-		return console.log(error);
+		return;
 	} else if (command === 'stop') {
     if (!msg.member.hasPermission("MUTE_MEMBERS")) return;
 		if (!serverQueue) return channel.send('❌ Aucune musique à stopper.');
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
-		return console.log(error);
+		return;
 	} else if (command === 'volume') {
     if (!msg.member.hasPermission("MUTE_MEMBERS")) return;
 		if (!serverQueue) return channel.send('❌ Aucune musique en cours de lecture.');
@@ -477,7 +477,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 		return channel.send('❌ Aucune musique en cours de lecture.');
 	}
 
-	return console.log(error);
+	return;
 });
 
 async function handleVideo(video, msg, voiceChannel, playlist = false) {
