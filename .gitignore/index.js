@@ -379,7 +379,7 @@ client.on("message", msg => {
 
 //Musique
 client.on('message', async msg => { 
-	if (msg.author.bot) return undefined6;
+	if (msg.author.bot) return console.log(error);
 	//if (!msg.content.startsWith(PREFIX)) return undefined;
 
 	const args = msg.content.split(' ');
@@ -435,13 +435,13 @@ Veuillez écrire une valeur allant de 1 à 10 pour sélectionner l'un des résul
     if (!msg.member.hasPermission("MUTE_MEMBERS")) return;
     if (!serverQueue) return channel.send("❌ Aucune musique suivante dans la file d'attente.");
 		serverQueue.connection.dispatcher.end('Skip command has been used!');
-		return undefined5;
+		return console.log(error);
 	} else if (command === 'stop') {
     if (!msg.member.hasPermission("MUTE_MEMBERS")) return;
 		if (!serverQueue) return channel.send('❌ Aucune musique à stopper.');
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
-		return undefined4;
+		return console.log(error);
 	} else if (command === 'volume') {
     if (!msg.member.hasPermission("MUTE_MEMBERS")) return;
 		if (!serverQueue) return channel.send('❌ Aucune musique en cours de lecture.');
@@ -477,7 +477,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 		return channel.send('❌ Aucune musique en cours de lecture.');
 	}
 
-	return undefined3;
+	return console.log(error);
 });
 
 async function handleVideo(video, msg, voiceChannel, playlist = false) {
@@ -514,10 +514,10 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	} else {
 		serverQueue.songs.push(song);
 		console.log(serverQueue.songs);
-		if (playlist) return undefined2;
+		if (playlist) return console.log(error);
 		else return channel.send(`✅ **${song.title}** a été ajouté à la file d'attente`);
 	}
-	return undefined1;
+	return ;
 }
 
 function play(guild, song) {
