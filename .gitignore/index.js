@@ -379,8 +379,8 @@ client.on("message", msg => {
 
 //Musique
 client.on('message', async msg => { 
-	if (msg.author.bot) return console.log(error);
-	//if (!msg.content.startsWith(PREFIX)) return undefined;
+	if (msg.author.bot) return;
+	if (!msg.content.startsWith(PREFIX)) return;
 
 	const args = msg.content.split(' ');
 	const searchString = args.slice(1).join(' ');
