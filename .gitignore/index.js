@@ -229,9 +229,10 @@ client.on('message', message => {
   if (message.content === prefix + 'aide') {
     message.channel.send(ce(
       "#010101", {"name": `Aide`, "icon_url": ""}, "", "",
-      [{"name": "[HS] !disneyland", "value": "Afficher les temps d'attentes du parc Disneyland Paris."},
-      {"name": "[HS] !studios", "value": "Afficher les temps d'attentes du parc Walt Disney Studios."},
-	  {"name": "!myaw", "value": "Afficher une image de chat aléatoire."},
+      [{"name": "!myaw", "value": "Afficher une image de chat aléatoire."},
+      {"name": "!ouaf", "value": "Afficher une image de chien aléatoire."},
+	  {"name": "[HS] !disneyland", "value": "Afficher les temps d'attentes du parc Disneyland Paris."},
+          {"name": "[HS] !studios", "value": "Afficher les temps d'attentes du parc Walt Disney Studios."},
 	  {"name": "!purge <2-100>", "value": "Supprimer des messages dans un salon textuel."},
 	  {"name": "!sondage;<Question>;<Choix1>;<Choix2>;<Choix3>", "value": "Lancer un sondage."}],
       {"text": "", "icon_url": ""}, 
@@ -378,7 +379,7 @@ client.on("message", msg => {
 
 //Musique
 client.on('message', async msg => { 
-	if (msg.author.bot) return undefined;
+	if (msg.author.bot) return undefined6;
 	//if (!msg.content.startsWith(PREFIX)) return undefined;
 
 	const args = msg.content.split(' ');
@@ -434,13 +435,13 @@ Veuillez écrire une valeur allant de 1 à 10 pour sélectionner l'un des résul
     if (!msg.member.hasPermission("MUTE_MEMBERS")) return;
     if (!serverQueue) return channel.send("❌ Aucune musique suivante dans la file d'attente.");
 		serverQueue.connection.dispatcher.end('Skip command has been used!');
-		return undefined;
+		return undefined5;
 	} else if (command === 'stop') {
     if (!msg.member.hasPermission("MUTE_MEMBERS")) return;
 		if (!serverQueue) return channel.send('❌ Aucune musique à stopper.');
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
-		return undefined;
+		return undefined4;
 	} else if (command === 'volume') {
     if (!msg.member.hasPermission("MUTE_MEMBERS")) return;
 		if (!serverQueue) return channel.send('❌ Aucune musique en cours de lecture.');
@@ -476,7 +477,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 		return channel.send('❌ Aucune musique en cours de lecture.');
 	}
 
-	return undefined;
+	return undefined3;
 });
 
 async function handleVideo(video, msg, voiceChannel, playlist = false) {
@@ -513,10 +514,10 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	} else {
 		serverQueue.songs.push(song);
 		console.log(serverQueue.songs);
-		if (playlist) return undefined;
+		if (playlist) return undefined2;
 		else return channel.send(`✅ **${song.title}** a été ajouté à la file d'attente`);
 	}
-	return undefined;
+	return undefined1;
 }
 
 function play(guild, song) {
